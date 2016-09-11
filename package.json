@@ -1,0 +1,19 @@
+{
+  "name": "react-native-geocoding",
+  "version": "0.1.0",
+  "description": "A React Native module to transform a description of a location (i.e. street address, town name, etc.) into geographic coordinates (i.e. latitude and longitude).",
+  "main": "Geocoder.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marlove/react-native-geocoding"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "geocoder",
+    "geocoding"
+  ],
+  "author": "Marco Lovetere <hello@marcolovetere.com> (http://www.marcolovetere.com)",
+  "license": "MIT"
+}
