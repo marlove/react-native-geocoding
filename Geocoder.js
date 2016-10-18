@@ -7,6 +7,36 @@ export default {
     this.apiKey = apiKey;
   },
 
+  async getFromLatLng(latLng) {
+    if (!this.apiKey) {
+      return Promise.reject(new Error("Provided API key is invalid"));
+    }
+
+    if (!latLng) {
+      return Promise.reject(new Error("Provided lat lng is invalid"));
+    }
+
+    const url = `${googleApiUrl}?key=${this.apiKey}&latlng=${encodeURI(latLng)}`;
+    const response = await fetch(url).catch(
+      error => {
+        return Promise.reject(new Error("Error fetching data"));
+      }
+    );
+
+    const json = await response.json().catch(
+      error => {
+        return Promise.reject(new Error("Error parsing server response"));
+      }
+    );
+
+    if (json.status === 'OK') {
+      return json;
+    }
+    else {
+      return Promise.reject(new Error(`Server returned status code ${json.status}`));
+    }
+  },
+
   async getFromLocation(address) {
     if (!this.apiKey) {
       return Promise.reject(new Error("Provided API key is invalid"));
