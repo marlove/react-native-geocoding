@@ -26,6 +26,16 @@ Geocoder.getFromLocation("Colosseum").then(
         alert(error);
       }
     );
+
+Geocoder.getFromLatLng(41.89, 12.49).then(
+      json => {
+        var address_component = json.results[0].address_components[0];
+        alert(address_component.long_name);
+      },
+      error => {
+        alert(error);
+      }
+    );
 ```
 
 ## Release Notes
