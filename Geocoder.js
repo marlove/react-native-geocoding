@@ -7,15 +7,16 @@ export default {
     this.apiKey = apiKey;
   },
 
-  async getFromLatLng(latLng) {
+  async getFromLatLng(lat, lng) {
     if (!this.apiKey) {
       return Promise.reject(new Error("Provided API key is invalid"));
     }
 
-    if (!latLng) {
-      return Promise.reject(new Error("Provided lat lng is invalid"));
+    if (!lat || !lng) {
+      return Promise.reject(new Error("Provided coordinates are invalid"));
     }
 
+    const latLng = `${lat},${lng}`;
     const url = `${googleApiUrl}?key=${this.apiKey}&latlng=${encodeURI(latLng)}`;
     const response = await fetch(url).catch(
       error => {
