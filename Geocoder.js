@@ -18,24 +18,8 @@ export default {
 
     const latLng = `${lat},${lng}`;
     const url = `${googleApiUrl}?key=${this.apiKey}&latlng=${encodeURI(latLng)}`;
-    const response = await fetch(url).catch(
-      error => {
-        return Promise.reject(new Error("Error fetching data"));
-      }
-    );
-
-    const json = await response.json().catch(
-      error => {
-        return Promise.reject(new Error("Error parsing server response"));
-      }
-    );
-
-    if (json.status === 'OK') {
-      return json;
-    }
-    else {
-      return Promise.reject(new Error(`Server returned status code ${json.status}`));
-    }
+    
+    return this.handleUrl(url);
   },
 
   async getFromLocation(address) {
@@ -48,7 +32,12 @@ export default {
     }
 
     const url = `${googleApiUrl}?key=${this.apiKey}&address=${encodeURI(address)}`;
-    const response = await fetch(url).catch(
+    
+    return this.handleUrl(url);
+  },
+
+  async handleUrl(url) {
+  	const response = await fetch(url).catch(
       error => {
         return Promise.reject(new Error("Error fetching data"));
       }
