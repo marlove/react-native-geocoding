@@ -2,6 +2,8 @@
 
 A geocoding module for [React Native](https://github.com/facebook/react-native) to transform a description of a location (i.e. street address, town name, etc.) into geographic coordinates (i.e. latitude and longitude) and vice versa.
 
+This module probably works for most javascript frameworks, not just [React Native](https://github.com/facebook/react-native)
+
 This module uses [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro) and requires an API key for purposes of quota management. Please check [this link](https://developers.google.com/maps/documentation/geocoding/get-api-key) out to obtain your API key.
 
 ## Install

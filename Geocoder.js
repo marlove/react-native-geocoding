@@ -5,6 +5,11 @@ export default {
 
   setApiKey(apiKey) {
     this.apiKey = apiKey;
+    this.language = "";
+  },
+
+  setLanguage(language) {
+    this.language = "language="+language+"&";
   },
 
   async getFromLatLng(lat, lng) {
@@ -17,7 +22,7 @@ export default {
     }
 
     const latLng = `${lat},${lng}`;
-    const url = `${googleApiUrl}?key=${this.apiKey}&latlng=${encodeURI(latLng)}`;
+    const url = `${googleApiUrl}?${this.language}key=${this.apiKey}&latlng=${encodeURI(latLng)}`;
     
     return this.handleUrl(url);
   },
@@ -31,7 +36,7 @@ export default {
       return Promise.reject(new Error("Provided address is invalid"));
     }
 
-    const url = `${googleApiUrl}?key=${this.apiKey}&address=${encodeURI(address)}`;
+    const url = `${googleApiUrl}?${this.language}&key=${this.apiKey}&address=${encodeURI(address)}`;
     
     return this.handleUrl(url);
   },
