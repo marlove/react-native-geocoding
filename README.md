@@ -25,7 +25,7 @@ Geocoder.from("Colosseum")
 		})
 		.catch(error => console.warn(error));
 
-Geocoder.from(41.89, 12.49).
+Geocoder.from(41.89, 12.49)
 		.then(json => {
         	var addressComponent = json.results[0].address_components[0];
 			console.log(addressComponent);
