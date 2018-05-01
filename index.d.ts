@@ -1,4 +1,4 @@
-declare class Geocoder {
+export default class Geocoder {
     init(apiKey: string): void;
     get isInit(): boolean;
     setApiKey(API_KEY: string): void;
