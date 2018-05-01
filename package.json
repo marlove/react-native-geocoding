@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "description": "A React Native module to transform a description of a location (i.e. street address, town name, etc.) into geographic coordinates (i.e. latitude and longitude) and vice versa.",
   "main": "Geocoder.js",
+  "typings": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/marlove/react-native-geocoding"
@@ -14,6 +15,9 @@
     "geocoder",
     "geocoding"
   ],
-  "authors": ["Marco Lovetere <marco@marlove.net> (https://marlove.net)", "Yairopro <yairopro@gmail.com>"],
+  "authors": [
+    "Marco Lovetere <marco@marlove.net> (https://marlove.net)",
+    "Yairopro <yairopro@gmail.com>"
+  ],
   "license": "MIT"
 }
