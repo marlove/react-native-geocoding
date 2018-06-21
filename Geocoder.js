@@ -5,13 +5,16 @@ let API_KEY;
  */
 let Geocoder;
 export default Geocoder = {
+	options : {},
+	
 	/**
 	 * Initialize the module.
 	 * @param {String} apiKey The api key of your application in google.
 	 * @see https://developers.google.com/maps/documentation/geocoding/intro#geocoding
 	 */
-	init(apiKey){
+	init(apiKey, options){
 		API_KEY = apiKey;
+		this.options = options || {};
 	},
 
 	/**
@@ -81,9 +84,11 @@ export default Geocoder = {
 			};
 
 		queryParams.key = API_KEY;
+		if (this.options.language)
+			queryParams.language = this.options.language;
 
 		// build url
-		const url = 'https://maps.google.com/maps/api/geocode/json?' + toQueryParams(queryParams);
+		const url = `https://maps.google.com/maps/api/geocode/json?${toQueryParams(queryParams)}`;
 
 		let response, data;
 
