@@ -18,7 +18,7 @@ import Geocoder from 'react-native-geocoding';
 // Initialize the module (needs to be done only once)
 Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx"); // use a valid API key
 // With more options
-Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx", {language : "en"}); // set the language
+// Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx", {language : "en"}); // set the language
 
 Geocoder.from("Colosseum")
 		.then(json => {
