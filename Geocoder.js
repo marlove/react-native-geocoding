@@ -1,27 +1,27 @@
-let API_KEY;
-
 /**
  * Module to use google's geocoding & reverse geocoding.
  */
 let Geocoder;
 export default Geocoder = {
+	API_KEY : null,
 	options : {},
 	
 	/**
 	 * Initialize the module.
 	 * @param {String} apiKey The api key of your application in google.
+	 * @param {Object} [options] extra options for your geocoding request.
 	 * @see https://developers.google.com/maps/documentation/geocoding/intro#geocoding
 	 */
-	init(apiKey, options){
-		API_KEY = apiKey;
-		this.options = options || {};
+	init(apiKey, options = {}){
+		this.API_KEY = apiKey;
+		this.options = options;
 	},
 
 	/**
 	 * @returns {boolean} True if the module has been initiated. False otherwise.
 	 */
 	get isInit(){
-		return !! API_KEY;
+		return !!this.API_KEY;
 	},
 
 	/**
@@ -83,10 +83,7 @@ export default Geocoder = {
 				message : "Invalid parameters : \n" + JSON.stringify(params, null, 2),
 			};
 
-		queryParams.key = API_KEY;
-		if (this.options.language)
-			queryParams.language = this.options.language;
-
+		queryParams = { key: this.API_KEY, ...this.options, ...queryParams }
 		// build url
 		const url = `https://maps.google.com/maps/api/geocode/json?${toQueryParams(queryParams)}`;
 
