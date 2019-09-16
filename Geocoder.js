@@ -3,7 +3,7 @@
  */
 let Geocoder;
 export default Geocoder = {
-	API_KEY : null,
+	apiKey : null,
 	options : {},
 	
 	/**
@@ -12,24 +12,16 @@ export default Geocoder = {
 	 * @param {Object} [options] extra options for your geocoding request.
 	 * @see https://developers.google.com/maps/documentation/geocoding/intro#geocoding
 	 */
-	init(apiKey, options = {}){
-		this.API_KEY = apiKey;
+	init(apiKey, options = {}) {
+		this.apiKey = apiKey;
 		this.options = options;
 	},
 
 	/**
 	 * @returns {boolean} True if the module has been initiated. False otherwise.
 	 */
-	get isInit(){
-		return !!this.API_KEY;
-	},
-
-	/**
-	 * @see {@link Geocoder.init}
-	 * @deprecated
-	 */
-	setApiKey(API_KEY) {
-		this.init(API_KEY);
+	get isInit() {
+		return !!this.apiKey;
 	},
 
 	/**
@@ -72,7 +64,6 @@ export default Geocoder = {
 		else if (typeof params[0] === 'string')
 			queryParams = {address : params[0]};
 
-
 		// --- start geocoding ---
 
 		// check query params
@@ -83,7 +74,7 @@ export default Geocoder = {
 				message : "Invalid parameters : \n" + JSON.stringify(params, null, 2),
 			};
 
-		queryParams = { key: this.API_KEY, ...this.options, ...queryParams }
+		queryParams = { key: this.apiKey, ...this.options, ...queryParams }
 		// build url
 		const url = `https://maps.google.com/maps/api/geocode/json?${toQueryParams(queryParams)}`;
 
@@ -120,31 +111,6 @@ export default Geocoder = {
 			};
 
 		return data;
-	},
-
-	/**
-	 * <a href="https://developers.google.com/maps/documentation/geocoding/intro#geocoding">Geocodes</a>, converting address into a geographic coordinates.
-	 * Use {@link Geocoder.from} instead.
-	 * @param {String} address Address to reverse geocode.
-	 * @returns {Promise.<Object>} Object containing informations about the place and the coordinates.
-	 * @see https://developers.google.com/maps/documentation/geocoding/intro#Viewports
-	 * @deprecated
-	 */
-	getFromLocation(address) {
-		return this.from(address);
-	},
-
-	/**
-	 * Do <a href="https://developers.google.com/maps/documentation/geocoding/intro#ReverseGeocoding">reverse geocoding</a>, converting geographic coordinates into a human-readable address.
-	 * Use {@link Geocoder.from} instead.
-	 * @param {Number} lat Latitude coordinate.
-	 * @param {Number} lng Longitude coordinate.
-	 * @returns {Promise.<Object>} Object containing informations about the place at the coordinates.
-	 * @see https://developers.google.com/maps/documentation/geocoding/intro#GeocodingResponses
-	 * @deprecated
-	 */
-	getFromLatLng(lat, lng){
-		return this.from(lat, lng);
 	},
 
 	/**
@@ -186,7 +152,7 @@ export default Geocoder = {
  * @param {Object} object Object to convert.
  * @returns {string} Encoded query parameters.
  */
-function toQueryParams(object){
+function toQueryParams(object) {
 	return Object.keys(object)
 		.filter(key => !!object[key])
 		.map(key => key + "=" + encodeURIComponent(object[key]))
