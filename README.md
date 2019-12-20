@@ -20,6 +20,7 @@ Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx"); // use a valid API key
 // With more options
 // Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx", {language : "en"}); // set the language
 
+// Search by address
 Geocoder.from("Colosseum")
 		.then(json => {
 			var location = json.results[0].geometry.location;
@@ -27,6 +28,17 @@ Geocoder.from("Colosseum")
 		})
 		.catch(error => console.warn(error));
 
+// Search by address, with a biased geo-bounds
+Geocoder.from("Pyramid", {
+		southwest: {lat: 36.05, lng: -115.25},
+		northeast: {lat: 36.16, lng: -115.10}})
+		.then(json => {
+			var location = json.results[0].geometry.location;
+			console.log(location);
+		})
+		.catch(error => console.warn(error));
+
+// Search by geo-location (reserse geo-code)
 Geocoder.from(41.89, 12.49)
 		.then(json => {
         		var addressComponent = json.results[0].address_components[0];
