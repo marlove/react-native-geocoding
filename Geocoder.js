@@ -5,7 +5,7 @@ let Geocoder;
 export default Geocoder = {
 	apiKey : null,
 	options : {},
-	
+
 	/**
 	 * Initialize the module.
 	 * @param {String} apiKey The api key of your application in google.
@@ -48,8 +48,18 @@ export default Geocoder = {
 		// --- convert parameters ---
 		let queryParams;
 
+		// components
+		if (params[0] === 'components') {
+			const components = [];
+			for (const [key, value] of Object.entries(params[1])) {
+				components.push(`${key}:${value}`);
+			}
+
+			queryParams = {components: components.join('|')};
+		}
+
 		// (latitude, longitude)
-		if (!isNaN(params[0]) && !isNaN(params[1]))
+		else if (!isNaN(params[0]) && !isNaN(params[1]))
 			queryParams = {latlng : `${params[0]},${params[1]}`};
 
 		// [latitude, longitude]
