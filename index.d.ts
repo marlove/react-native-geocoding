@@ -1,10 +1,10 @@
 declare module 'react-native-geocoding' {
     export default class Geocoder {
-        init(apiKey: string, options: Object): void;
-        isInit(): boolean;
-        setApiKey(API_KEY: string): void;
-        from(...params: any[]): Promise<void>;
-        getFromLocation(address: string): Promise<any>;
-        getFromLatLng(lat: number, lng: number): Promise<any>;
+        public static init(apiKey: string, options: Object): void;
+        public static isInit(): boolean;
+        public static setApiKey(API_KEY: string): void;
+        public static from(...params: any[]): Promise<void>;
+        public static getFromLocation(address: string): Promise<any>;
+        public static getFromLatLng(lat: number, lng: number): Promise<any>;
     }
 }
