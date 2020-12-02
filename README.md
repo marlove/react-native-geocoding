@@ -38,7 +38,7 @@ Geocoder.from("Pyramid", {
 		})
 		.catch(error => console.warn(error));
 
-// Search by geo-location (reserse geo-code)
+// Search by geo-location (reverse geo-code)
 Geocoder.from(41.89, 12.49)
 		.then(json => {
         		var addressComponent = json.results[0].address_components[0];
