@@ -80,7 +80,7 @@ export default Geocoder = {
 
 		queryParams = { key: this.apiKey, ...this.options, ...queryParams }
 		// build url
-		const url = `https://maps.google.com/maps/api/geocode/json?${toQueryParams(queryParams)}`;
+		const url = `https://maps.googleapis.com/maps/api/geocode/json?${toQueryParams(queryParams)}`;
 
 		let response, data;
 
