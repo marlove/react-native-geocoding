@@ -56,10 +56,11 @@ export default Geocoder = {
 		else if (params[0] instanceof Array)
 			queryParams = {latlng : `${params[0][0]},${params[0][1]}`};
 
-		// {latitude, longitude}  or {lat, lng}
+		// {place_id}
 		else if (params[0] instanceof Object && params[0].hasOwnProperty('place_id'))
 			queryParams = {place_id : `${params[0].place_id}`};
-		
+
+		// {latitude, longitude}  or {lat, lng}
 		else if (params[0] instanceof Object)
 			queryParams = {latlng : `${params[0].lat || params[0].latitude},${params[0].lng || params[0].longitude}`};
 
