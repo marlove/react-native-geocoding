@@ -63,6 +63,12 @@ Geocoder.from({
 
 // array
 Geocoder.from([41.89, 12.49]);
+
+// object with place_id, provided by Google Places Api
+Geocoder.from({
+	place_id: 'ChIJgUbEo8cfqokR5lP9_Wh_DaM'
+});
+
 ```
 
 # Error Codes
