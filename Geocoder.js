@@ -5,6 +5,7 @@ let Geocoder;
 export default Geocoder = {
 	apiKey : null,
 	options : {},
+	instance: null,
 	
 	/**
 	 * Initialize the module.
@@ -86,13 +87,19 @@ export default Geocoder = {
 
 		// fetch
 		try {
-			response = await fetch(url);
+			const abortController = new AbortController();
+			this.instance = fetch(url, {
+				signal: abortController.signal
+			})
+			response = await this.instance;
 		} catch(error) {
 			throw {
 				code : Geocoder.Errors.FETCHING,
 				message : "Error while fetching. Check your network.",
 				origin : error,
 			};
+		} finally {
+			this.instance = null
 		}
 
 		// parse
@@ -115,6 +122,16 @@ export default Geocoder = {
 			};
 
 		return data;
+	},
+
+	isProcessing() {
+		return !!this.instance
+	},
+
+	abort() {
+		if (this.instance) {
+			this.instance.abort()
+		}
 	},
 
 	/**
